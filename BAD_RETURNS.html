@@ -290,7 +290,7 @@ counterfeitCheckbox.addEventListener("change", () => {
 /* Bad history option toggler */
 const badHistoryOption = document.getElementById("badHistoryOption");
 badHistoryOption.addEventListener("change", () => {
-    const show = badHistoryOption.value === "yes" || badHistoryOption.value === "no";
+    const show = badHistoryOption.value === "yes" ;
     document.getElementById("badHistoryCountWrapper").classList.toggle("hidden", !show);
 	
 });
@@ -393,6 +393,7 @@ function copyToClipboard() {
 
 </body>
 </html>
+
 
 
 
