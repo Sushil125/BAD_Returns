@@ -288,12 +288,10 @@ counterfeitCheckbox.addEventListener("change", () => {
 });
 
 /* Bad history option toggler */
-const badHistoryOption = document.getElementById("badHistoryOption");
-badHistoryOption.addEventListener("change", () => {
-    const show = badHistoryOption.value === "yes" ;
-    document.getElementById("badHistoryCountWrapper").classList.toggle("hidden", !show);
-	
-});
+document.getElementById("badHistoryOption").addEventListener("change", e => {
+    const show = e.target.value === "yes" || e.target.value === "no";
+    document.getElementById("badHistoryCountWrapper")
+        .classList.toggle("hidden", !show);
 });
 
 /* Generate message */
@@ -354,7 +352,7 @@ function generateMessage() {
     if (document.getElementById("badHistory").checked) {
         const totalOrders = f("badHistoryCount") || "unknown";
         if (badHistoryOption.value === "yes") msg += ` Customer has bad return history with ${totalOrders} previous orders.`;
-        else if (badHistoryOption.value === "no") msg += `Customer has moderate return history .`;
+        else if (badHistoryOption.value === "no") msg += `Customer has moderate return history with ${totalOrders} previous orders.`;
     }
 
     if (document.getElementById("receivedRefund").checked) {
@@ -393,7 +391,3 @@ function copyToClipboard() {
 
 </body>
 </html>
-
-
-
-
