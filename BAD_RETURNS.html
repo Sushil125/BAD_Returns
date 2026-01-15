@@ -354,7 +354,7 @@ function generateMessage() {
     if (document.getElementById("badHistory").checked) {
         const totalOrders = f("badHistoryCount") || "unknown";
         if (badHistoryOption.value === "yes") msg += ` Customer has bad return history with ${totalOrders} previous orders.`;
-        else if (badHistoryOption.value === "no") msg += `Customer has moderate return history with ${totalOrders} previous orders.`;
+        else if (badHistoryOption.value === "no") msg += `Customer has moderate return history .`;
     }
 
     if (document.getElementById("receivedRefund").checked) {
