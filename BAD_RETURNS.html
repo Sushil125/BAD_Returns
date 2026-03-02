@@ -233,6 +233,16 @@
         </div>
 
         <label><input type="checkbox" id="receivedExchange"> Received Exchange</label>
+		<label><input type="checkbox" id="blueCage"> Placed in Blue Cage for LP?</label>
+
+<div id="blueCageOptions" class="indent hidden">
+    <label for="blueCageOption">Option:</label>
+    <select id="blueCageOption">
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+</div>
     </div>
 
     <br />
@@ -293,7 +303,16 @@ document.getElementById("badHistoryOption").addEventListener("change", e => {
     document.getElementById("badHistoryCountWrapper")
         .classList.toggle("hidden", !show);
 });
+const blueCageCheckbox = document.getElementById("blueCage");
+const blueCageOptions = document.getElementById("blueCageOptions");
 
+blueCageCheckbox.addEventListener("change", () => {
+    blueCageOptions.classList.toggle("hidden", !blueCageCheckbox.checked);
+
+    if (!blueCageCheckbox.checked) {
+        document.getElementById("blueCageOption").value = "";
+    }
+});
 /* Generate message */
 function generateMessage() {
     const f = id => document.getElementById(id).value.trim();
@@ -361,6 +380,15 @@ function generateMessage() {
     }
 
     if (document.getElementById("receivedExchange").checked) msg += " Customer received an exchange.";
+	if (document.getElementById("blueCage").checked) {
+    const blueOpt = document.getElementById("blueCageOption").value;
+
+    if (blueOpt === "yes") {
+        msg += " Item will be secured and placed in the Blue Cage for LP investigation.";
+    } else if (blueOpt === "no") {
+        msg += " Item will NOT be placed in the Blue Cage for LP.";
+    }
+}
 
     document.getElementById("generatedText").value = msg;
 }
@@ -374,6 +402,8 @@ function clearFields() {
     document.getElementById("badHistoryCountWrapper").classList.add("hidden");
     counterfeitInline.classList.add("hidden");
     document.getElementById("generatedText").value = "";
+	document.getElementById("blueCageOptions").classList.add("hidden");
+document.getElementById("blueCageOption").value = "";
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById("copyButton").innerText = "Copy";
 }
