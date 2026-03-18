@@ -134,6 +134,9 @@
 <h1>Bad Returns</h1>
 
 <div class="container">
+	<label for="LPN">LPN:</label>
+    <input type="text" id="lpn">
+	
     <label for="itemName">Item Name:</label>
     <input type="text" id="itemName">
 
@@ -316,7 +319,7 @@ blueCageCheckbox.addEventListener("change", () => {
 /* Generate message */
 function generateMessage() {
     const f = id => document.getElementById(id).value.trim();
-    let msg = `Customer ordered ${f("itemName")} [${f("asin")}] priced at $${f("price")} on ${f("orderInitiated")} and started the return on ${f("returnInitiated")}.`;
+    let msg = `${f("lpn")}: Customer ordered ${f("itemName")} [${f("asin")}] priced at $${f("price")} on ${f("orderInitiated")} and started the return on ${f("returnInitiated")}.`;
 
     if (f("customerComment")) msg += ` Customer comment: ${f("customerComment")}.`;
 
