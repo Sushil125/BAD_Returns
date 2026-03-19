@@ -1,35 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bad Returns Simplified</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bad Returns</title>
 <style>
-body { font-family: Arial,sans-serif; background:#f1f3f7; margin:0; padding:20px; color:#333; }
-h1 { text-align:center; margin-bottom:18px; font-size:24px; color:#222; }
-.container { max-width:650px; margin:auto; background:white; padding:20px; border-radius:10px; box-shadow:0 4px 18px rgba(0,0,0,0.08); }
-label { display:block; margin-top:10px; font-weight:600; font-size:13px; }
-input[type="text"] { width:100%; padding:8px 10px; margin-top:6px; margin-bottom:10px; border-radius:7px; border:1px solid #c3c7cc; background:#fafafa; font-size:13px; box-sizing:border-box; }
-.checkbox-group label { font-weight:500; font-size:13px; margin-bottom:4px; display:block; padding:2px 0; }
-.indent { margin-left:18px; padding-left:10px; border-left:2px solid #e6e6e6; margin-top:6px; margin-bottom:6px; }
-.hidden { display:none; }
-.row { display:flex; gap:10px; margin-top:8px; }
-button { flex:1; padding:8px 12px; font-size:13px; border:none; border-radius:7px; cursor:pointer; background:#4a8df6; color:white; }
-button:hover { filter:brightness(0.95); }
-#copyButton { background:#28a745; }
-#copyButton:hover { background:#1f7a36; }
-textarea { width:100%; height:120px; padding:8px 10px; border-radius:7px; border:1px solid #c3c7cc; margin-top:10px; background:#fafafa; resize:vertical; font-size:13px; }
+    body {
+        font-family: Arial, sans-serif;
+        background: #f1f3f7;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 18px;
+        font-size: 24px;
+        color: #222;
+    }
+    .container {
+        max-width: 820px;
+        margin: auto;
+        background: white;
+        padding: 20px 24px;
+        border-radius: 10px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+    label {
+        font-weight: 600;
+        margin-top: 8px;
+        display: block;
+        font-size: 13px;
+    }
+    input[type="text"], select, textarea {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #c3c7cc;
+        border-radius: 7px;
+        font-size: 13px;
+        margin-top: 6px;
+        margin-bottom: 10px;
+        background: #fafafa;
+        box-sizing: border-box;
+    }
+    .checkbox-group label {
+        font-weight: 500;
+        font-size: 13px;
+        margin-bottom: 4px;
+        padding: 2px 0;
+        display: block;
+    }
+    .indent {
+        margin-left: 18px;
+        padding-left: 10px;
+        border-left: 2px solid #e6e6e6;
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+    .hidden { display: none; }
+    .row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .col {
+        flex: 1;
+    }
+    button {
+        background: #4a8df6;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 7px;
+        font-size: 13px;
+        cursor: pointer;
+        margin-right: 8px;
+        margin-top: 8px;
+    }
+    #copyButton { background: #28a745; }
+    #copyButton:hover { background: #1f7a36; }
+    button:hover { filter: brightness(0.95); }
+    textarea {
+        height: 85px;
+        min-height: 55px;
+        max-height: 240px;
+        resize: vertical;
+        background: #fafafa;
+        border-radius: 6px;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    .side-link {
+        position: fixed;
+        top: 20px;
+        right: 22px;
+        background: #4a8df6;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+        z-index: 9999;
+        transition: transform .12s ease, background .12s ease;
+    }
+    .side-link:hover { transform: translateY(-3px); background: #3b7be0; }
+    .small { font-size: 12px; color: #666; }
+    .inline-inputs { display: grid; grid-template-columns: 1fr 1fr 140px; gap: 10px; margin-top: 6px; }
+    @media (max-width: 700px) {
+        .inline-inputs { grid-template-columns: 1fr; }
+        .side-link { right: 10px; top: 10px; padding: 8px 12px; font-size: 13px; }
+    }
 </style>
 </head>
 <body>
 
+<a href="https://lossprevention.amazon.com/redphone_cases" target="_blank" class="side-link">RedPhone Cases</a>
+
 <h1>Bad Returns</h1>
 
-<div class="container">
+<div class="container">	
     <label for="itemName">Item Name:</label>
     <input type="text" id="itemName">
 
-    <label for="lpn">LPN:</label>
+    <label for="LPN">LPN:</label>
     <input type="text" id="lpn">
 
     <label for="asin">ASIN:</label>
@@ -47,7 +142,6 @@ textarea { width:100%; height:120px; padding:8px 10px; border-radius:7px; border
     <label for="customerComment">Customer Comment:</label>
     <input type="text" id="customerComment">
 
-    <!-- Simplified issue checkboxes -->
     <div class="checkbox-group">
         <label><input type="checkbox" id="beyondUse"> Beyond Acceptable Use</label>
         <label><input type="checkbox" id="counterfeit"> Counterfeit</label>
@@ -55,10 +149,7 @@ textarea { width:100%; height:120px; padding:8px 10px; border-radius:7px; border
         <label><input type="checkbox" id="emptyBox"> Empty Box</label>
         <label><input type="checkbox" id="manipulatedLabel"> Manipulated Label</label>
         <label><input type="checkbox" id="differentUnit"> Different Unit</label>
-    </div>
 
-    <!-- Status checkboxes with dropdowns -->
-    <div class="checkbox-group" style="margin-top:15px;">
         <label><input type="checkbox" id="badHistory"> Bad History?</label>
         <div id="badHistoryOptions" class="indent hidden">
             <label for="badHistoryOption">Option:</label>
@@ -84,7 +175,6 @@ textarea { width:100%; height:120px; padding:8px 10px; border-radius:7px; border
         </div>
 
         <label><input type="checkbox" id="receivedExchange"> Received Exchange</label>
-
         <label><input type="checkbox" id="blueCage"> Placed in Blue Cage for LP?</label>
         <div id="blueCageOptions" class="indent hidden">
             <label for="blueCageOption">Option:</label>
@@ -96,47 +186,57 @@ textarea { width:100%; height:120px; padding:8px 10px; border-radius:7px; border
         </div>
     </div>
 
+    <br />
     <div class="row">
         <button onclick="generateMessage()">Update</button>
         <button id="copyButton" onclick="copyToClipboard()">Copy</button>
         <button onclick="clearFields()">Clear</button>
     </div>
 
-    <label for="generatedText" style="margin-top:12px;">Generated Text:</label>
+    <label for="generatedText" style="margin-top:12px; display:block;">Generated Text:</label>
     <textarea id="generatedText"></textarea>
+
+    <!-- Hidden field for Asana dropdown -->
+    <textarea id="asanaDropdownField" class="hidden"></textarea>
 </div>
 
 <script>
-// Toggle dropdowns only when checkbox is checked
-const statusToggles = [
+// Toggle dropdown sections
+const toggleList = [
     ["badHistory","badHistoryOptions"],
     ["receivedRefund","refundOptions"],
     ["blueCage","blueCageOptions"]
 ];
-
-statusToggles.forEach(([cbId, boxId])=>{
+toggleList.forEach(([cbId, boxId])=>{
     const cb = document.getElementById(cbId);
     const box = document.getElementById(boxId);
-    cb.addEventListener("change",()=> {
-        box.classList.toggle("hidden", !cb.checked);
-        if(!cb.checked) {
-            box.querySelectorAll("select, input[type=text]").forEach(el=>el.value="");
+    cb.addEventListener("change", ()=>{ box.classList.toggle("hidden", !cb.checked); });
+});
+
+// Bad History count toggler
+document.getElementById("badHistoryOption").addEventListener("change", e=>{
+    document.getElementById("badHistoryCountWrapper")
+        .classList.toggle("hidden", !(e.target.value === "yes" || e.target.value === "no"));
+});
+
+// Make issue checkboxes mutually exclusive (only one)
+const issueCheckboxes = ["beyondUse","counterfeit","junkBox","emptyBox","manipulatedLabel","differentUnit"]
+    .map(id=>document.getElementById(id));
+issueCheckboxes.forEach(cb=>{
+    cb.addEventListener("change", ()=>{
+        if(cb.checked){
+            issueCheckboxes.forEach(other=>{ if(other!==cb) other.checked=false; });
         }
     });
 });
 
-// Nested bad history count
-document.getElementById("badHistoryOption").addEventListener("change", e=>{
-    const show = e.target.value==="yes"||e.target.value==="no";
-    document.getElementById("badHistoryCountWrapper").classList.toggle("hidden", !show);
-});
+// Generate message
+function generateMessage(){
+    const f=id=>document.getElementById(id).value.trim();
+    let msg=`${f("lpn")}: Customer ordered ${f("itemName")} [${f("asin")}] priced at $${f("price")} on ${f("orderInitiated")} and started the return on ${f("returnInitiated")}.`;
+    if(f("customerComment")) msg+=` Customer comment: ${f("customerComment")}.`;
 
-function generateMessage() {
-    const f = id=>document.getElementById(id).value.trim();
-    let msg = `${f("lpn")}: Customer ordered ${f("itemName")} [${f("asin")}] priced at $${f("price")} on ${f("orderInitiated")} and started the return on ${f("returnInitiated")}.`;
-    if(f("customerComment")) msg += ` Customer comment: ${f("customerComment")}.`;
-
-    // Issues
+   // ---------------- ISSUES ----------------
     const issues = [
         ["beyondUse","Customer returned the item in beyond acceptable use condition."],
         ["counterfeit","Customer returned a counterfeit item."],
@@ -145,9 +245,11 @@ function generateMessage() {
         ["manipulatedLabel","Label on the item was manipulated."],
         ["differentUnit","Customer returned a different unit."]
     ];
-    issues.forEach(([id,text])=>{ if(document.getElementById(id).checked) msg+=" "+text; });
+    issues.forEach(([id,text]) => {
+        if (document.getElementById(id).checked) msg += " " + text;
+    });
 
-    // Status
+    // Status checkboxes
     if(document.getElementById("badHistory").checked){
         const bhOption = document.getElementById("badHistoryOption").value.toLowerCase();
         const totalOrders = f("badHistoryCount")||"unknown";
@@ -169,15 +271,20 @@ function generateMessage() {
     document.getElementById("generatedText").value = msg;
 }
 
+// Clear all fields
 function clearFields(){
     document.querySelectorAll("input[type=text]").forEach(el=>el.value="");
     document.querySelectorAll("input[type=checkbox]").forEach(el=>el.checked=false);
     document.querySelectorAll("select").forEach(el=>el.value="");
+    toggleList.forEach(([cb,box])=>document.getElementById(box).classList.add("hidden"));
     document.getElementById("badHistoryCountWrapper").classList.add("hidden");
     document.getElementById("generatedText").value="";
+    document.getElementById("asanaDropdownField").value="";
+    window.scrollTo({top:0,behavior:'smooth'});
     document.getElementById("copyButton").innerText="Copy";
 }
 
+// Copy to clipboard
 function copyToClipboard(){
     const area = document.getElementById("generatedText");
     navigator.clipboard.writeText(area.value).then(()=>{
