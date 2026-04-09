@@ -158,10 +158,7 @@
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
-            <div id="badHistoryCountWrapper" class="indent hidden">
-                <label for="badHistoryCount">Total Previous Orders:</label>
-                <input type="text" id="badHistoryCount">
-            </div>
+           
         </div>
 
         <label><input type="checkbox" id="receivedRefund"> Received Refund?</label>
@@ -213,11 +210,6 @@ toggleList.forEach(([cbId, boxId])=>{
     cb.addEventListener("change", ()=>{ box.classList.toggle("hidden", !cb.checked); });
 });
 
-// Bad History count toggler
-document.getElementById("badHistoryOption").addEventListener("change", e=>{
-    document.getElementById("badHistoryCountWrapper")
-        .classList.toggle("hidden", !(e.target.value === "yes" || e.target.value === "no"));
-});
 
 // Make issue checkboxes mutually exclusive (only one)
 const issueCheckboxes = ["beyondUse","counterfeit","junkBox","emptyBox","manipulatedLabel","differentUnit"]
@@ -251,11 +243,15 @@ function generateMessage(){
 
     // Status checkboxes
     if(document.getElementById("badHistory").checked){
-        const bhOption = document.getElementById("badHistoryOption").value.toLowerCase();
-        const totalOrders = f("badHistoryCount")||"unknown";
-        if(bhOption==="yes") msg+=` Customer has bad return history with ${totalOrders} previous orders.`;
-        else if(bhOption==="no") msg+=` Customer has moderate return history with ${totalOrders} previous orders.`;
+    const bhOption = document.getElementById("badHistoryOption").value.toLowerCase();
+
+    if(bhOption==="yes") {
+        msg += " Customer has a bad return history.";
     }
+    else if(bhOption==="no") {
+        msg += " Customer does not have extensive return history.";
+    }
+}
     if(document.getElementById("receivedRefund").checked){
         const rOption = document.getElementById("refundOption").value.toLowerCase();
         if(rOption==="yes") msg+=" Customer has received a refund.";
