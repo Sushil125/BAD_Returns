@@ -360,7 +360,6 @@
       <div class="buttons">
         <button class="btn-primary" type="button" onclick="generateMessage()">Update</button>
         <button class="btn-success" id="copyButton" type="button" onclick="copyToClipboard()">Copy</button>
-        <button class="btn-secondary" type="button" onclick="sendToAsana()">Send To Asana</button>
         <button class="btn-danger" type="button" onclick="clearFields()">Clear</button>
       </div>
 
@@ -393,21 +392,9 @@
       return issueMap[selectedIssueId()] || "";
     }
 
-    function getIssueTextForAsana() {
-      const asanaMap = {
-        beyondUse: "Beyond Acceptable Use",
-        counterfeit: "Counterfeit",
-        junkBox: "Junk in the Box",
-        emptyBox: "Empty Box",
-        manipulatedLabel: "Manipulated Label",
-        differentUnit: "Different Unit"
-      };
-      return asanaMap[selectedIssueId()] || "";
-    }
+    
 
-    function cleanPrice(value) {
-      return value.replace(/\$/g, "").trim();
-    }
+    
 
     function identifierPrefix() {
       const lpn = f("lpn");
@@ -504,39 +491,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function sendToAsana() {
-      const product = f("itemName");
-      const asin = f("asin");
-      const lpn = f("lpn");
-      const price = cleanPrice(f("price"));
-      const comment = f("customerComment");
-      const orderDate = f("orderInitiated");
-      const returnDate = f("returnInitiated");
-      const blueCage = f("blueCageOption");
-      const badHistory = f("badHistoryOption");
-      const refund = f("refundOption");
-      const issue = getIssueTextForAsana();
-
-      const isApple = product.toLowerCase().includes("apple") ? "Yes" : "No";
-
-      const url =
-        "https://form.asana.com/?k=szb3rSmS-bLn9jQxwxwC9Q&d=8442528107068&rr=302939&s=login" +
-        "&product=" + encodeURIComponent(product) +
-        "&asin=" + encodeURIComponent(asin) +
-        "&price=" + encodeURIComponent(price) +
-        "&lpn=" + encodeURIComponent(lpn) +
-        "&orderDate=" + encodeURIComponent(orderDate) +
-        "&returnDate=" + encodeURIComponent(returnDate) +
-        "&comment=" + encodeURIComponent(comment) +
-        "&blueCage=" + encodeURIComponent(blueCage) +
-        "&badHistory=" + encodeURIComponent(badHistory) +
-        "&refund=" + encodeURIComponent(refund) +
-        "&issue=" + encodeURIComponent(issue) +
-        "&appleProduct=" + encodeURIComponent(isApple); 
-
-      window.open(url, "_blank");
-    }
-
+    
     document.addEventListener("keydown", function (e) {
       const tag = document.activeElement?.tagName?.toLowerCase();
       if (e.key === "Enter" && tag !== "textarea") {
