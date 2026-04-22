@@ -392,10 +392,11 @@
       return issueMap[selectedIssueId()] || "";
     }
 
-    
+    function cleanPrice(value) {
+      return value.replace(/\$/g, "").trim();
+    }
 
     
-
     function identifierPrefix() {
       const lpn = f("lpn");
       const asin = f("asin");
